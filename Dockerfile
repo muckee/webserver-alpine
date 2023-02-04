@@ -1,7 +1,8 @@
-FROM busybox:1.35
+FROM alpine:latest
+
+RUN apk update && apk add --no-cache apache2 &&
+    rc-service apache2 start
 
 RUN adduser -D html
 USER html
 WORKDIR /var/www/html
-
-CMD ["busybox", "httpd", "-f", "-v", "-p", "9223"]
